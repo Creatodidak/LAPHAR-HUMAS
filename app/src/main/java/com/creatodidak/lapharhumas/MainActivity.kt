@@ -12,6 +12,7 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.laporanlist.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -31,15 +32,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Kelolalaporan::class.java))
         }
 
-    }
-
-
-    override fun onResume() {
+    }    override fun onResume() {
         super.onResume()
-        loadLaporan()}
-
-
-    private fun loadLaporan(){
+        loadLaporan()
+    }private fun loadLaporan(){
 
         val loading = ProgressDialog(this)
         loading.setMessage("Memuat data...")
@@ -66,10 +62,9 @@ class MainActivity : AppCompatActivity() {
                         val jsonObject = jsonArray?.optJSONObject(i)
                         arrayList.add(
                             Laporanmodel(jsonObject.getString("laporan"),
-                                         jsonObject.getString("personil"),
-                                         jsonObject.getString("satuan"),
-                                         jsonObject.getString("time"),
-                            )
+                            jsonObject.getString("personil"),
+                            jsonObject.getString("satuan"),
+                            jsonObject.getString("time"))
                         )
 
                         if(jsonArray?.length() - 1 == i){
@@ -88,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onError(anError: ANError?) {
                     loading.dismiss()
                     anError?.errorDetail?.toString()?.let { Log.d("ONERROR", it) }
-                    Toast.makeText(applicationContext,"Koneksi Terputus :(",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"Connection Failure",Toast.LENGTH_SHORT).show()
                 }
             })
 

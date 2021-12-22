@@ -21,9 +21,9 @@ class Laporanadapter (private val context: Context,
 
                             override fun onBindViewHolder(holder: Holder, position: Int) {
                                 holder.view.laporan.text = arrayList?.get(position)?.laporan
-                                holder.view.user.text = arrayList?.get(position)?.personil
+                                holder.view.personil.text = arrayList?.get(position)?.personil
                                 holder.view.satuan.text = arrayList?.get(position)?.satuan
-                                holder.view.waktu.text = arrayList?.get(position)?.time
+                                holder.view.time.text = arrayList?.get(position)?.time
                             }
 
                             override fun getItemCount(): Int = arrayList!!.size
